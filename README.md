@@ -12,3 +12,8 @@ npx prisma migrate dev --name init
 ```
 npx prisma migrate dev --name fix_many_to_many
 ```
+
+## 发送验证码
+```
+http://localhost:3000/auth/send-verification-code?email=test@example.com
+```

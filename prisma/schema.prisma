@@ -112,3 +112,15 @@ model OperationLog {
   createdAt   DateTime @default(now())
 }
 
+// 验证码模型
+model VerificationCode {
+  id          Int      @id @default(autoincrement())
+  email       String   // 邮箱
+  code        String   // 验证码
+  type        String   // 验证码类型：register-注册，reset-重置密码
+  expiredAt   DateTime // 过期时间
+  used        Boolean  @default(false) // 是否已使用
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
