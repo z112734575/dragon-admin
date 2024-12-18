@@ -40,7 +40,12 @@ app.use(async (ctx, next) => {
 });
 
 // 登录保护
-app.use(jwt({ secret: JWT_SECRET }).unless({ path: [/^\/auth\/(register|login)$/] }));
+app.use(jwt({ secret: JWT_SECRET }).unless({ path: [/^\/auth\/(register|login)$/, /^\/$/] }));
+
+// 根路由
+router.get('/', async (ctx) => {
+  ctx.body = { message: 'Hello, World!' };
+});
 
 // 路由：注册
 router.post('/auth/register', async (ctx) => {
