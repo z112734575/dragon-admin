@@ -159,3 +159,8 @@ exports.sendVerificationCode = async (ctx) => {
     };
   }
 }; 
+
+exports.logout = async (ctx) => {
+  ctx.cookies.set('token', '', { expires: new Date(0) });
+  ctx.body = { message: '登出成功' };
+};

@@ -17,3 +17,17 @@ npx prisma migrate dev --name fix_many_to_many
 ```
 http://localhost:3000/auth/send-verification-code?email=test@example.com
 ```
+
+```
+pm2 start src/app.js --name dragon-admin 启动服务
+
+pm2 stop dragon-admin 停止服务
+
+pm2 restart dragon-admin 重启服务
+
+pm2 delete dragon-admin 删除服务
+
+pm2 list 查看服务列表
+
+pm2 status dragon-admin 查看服务状态
+```
