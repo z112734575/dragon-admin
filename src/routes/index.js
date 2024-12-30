@@ -5,7 +5,7 @@ const path = require('path');
 const router = new Router();
 
 // 动态加载版本化路由
-const versions = ['v1', 'v2']; // 可以根据需要添加更多版本
+const versions = ['v1']; // 可以根据需要添加更多版本, 比如 ['v1', 'v2']
 
 versions.forEach(version => {
   const versionRouter = new Router();
