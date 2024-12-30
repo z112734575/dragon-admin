@@ -1,12 +1,23 @@
 const Router = require('koa-router');
-const authRoutes = require('./authRoutes');
-const userRoutes = require('./userRoutes');
-const roleRoutes = require('./roleRoutes');
+const fs = require('fs');
+const path = require('path');
 
 const router = new Router();
 
-router.use(authRoutes.routes());
-router.use(userRoutes.routes());
-router.use(roleRoutes.routes());
+// 动态加载版本化路由
+const versions = ['v1', 'v2']; // 可以根据需要添加更多版本
+
+versions.forEach(version => {
+  const versionRouter = new Router();
+  versionRouter.prefix(`/${version}`);
+
+  const routesPath = path.join(__dirname, version);
+  fs.readdirSync(routesPath).forEach(file => {
+    const route = require(path.join(routesPath, file));
+    versionRouter.use(route.routes());
+  });
+
+  router.use(versionRouter.routes());
+});
 
 module.exports = router; 
